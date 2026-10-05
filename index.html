@@ -8,159 +8,201 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+      font-family: 'Poppins', -apple-system, sans-serif;
+      background: linear-gradient(135deg, #1a0826 0%, #3a0ca3 50%, #7209b7 100%);
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      padding: 20px;
-      color: #333;
+      color: #fff;
       text-align: center;
+      padding: 15px;
       overflow-x: hidden;
     }
-    .card {
-      background: rgba(255, 255, 255, 0.9);
-      padding: 25px;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      max-width: 420px;
+    .container {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 24px;
+      padding: 25px 20px;
+      max-width: 400px;
       width: 100%;
-      margin-top: 15px;
-      backdrop-filter: blur(8px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
     }
-    h1 {
-      color: #d81b60;
-      font-size: 26px;
-      margin-bottom: 8px;
+    .page { display: none; animation: fadeIn 0.6s ease; }
+    .page.active { display: block; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    .tagline {
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 20px;
-    }
-    .photo-frame {
-      width: 100%;
-      height: 320px;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-      margin-bottom: 20px;
-      border: 4px solid #fff;
-    }
-    .photo-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    h1 { font-size: 26px; color: #ff70a6; margin-bottom: 10px; }
+    p { font-size: 14px; line-height: 1.6; color: #f1f1f1; margin-bottom: 20px; }
     .btn {
-      background: linear-gradient(45deg, #e91e63, #ff4081);
+      background: linear-gradient(45deg, #f72585, #b5179e);
       color: white;
       border: none;
-      padding: 12px 24px;
-      border-radius: 25px;
+      padding: 12px 28px;
+      border-radius: 30px;
       font-size: 15px;
-      font-weight: bold;
+      font-weight: 600;
       cursor: pointer;
-      margin: 8px 4px;
-      box-shadow: 0 4px 10px rgba(233, 30, 99, 0.3);
+      box-shadow: 0 5px 15px rgba(247, 37, 133, 0.4);
+      margin: 10px 5px;
       transition: transform 0.2s;
     }
     .btn:active { transform: scale(0.96); }
-    .letter {
-      display: none;
-      margin-top: 20px;
+    
+    /* Polaroid Card Slider */
+    .polaroid-slider {
+      display: flex;
+      gap: 15px;
+      overflow-x: auto;
+      padding: 10px 5px;
+      scroll-snap-type: x mandatory;
+      margin-bottom: 15px;
+    }
+    .polaroid {
+      min-width: 85%;
+      background: #fff;
+      padding: 10px 10px 20px 10px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      scroll-snap-align: center;
+      color: #333;
+    }
+    .polaroid img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    .polaroid span {
+      font-size: 13px;
+      font-weight: bold;
+      color: #444;
+      font-family: cursive, sans-serif;
+    }
+    
+    /* Candle Blow interactive */
+    .cake-box { font-size: 70px; margin: 15px 0; cursor: pointer; position: relative; }
+    .flame {
+      display: inline-block;
+      font-size: 32px;
+      animation: flicker 1s infinite alternate;
+      cursor: pointer;
+    }
+    @keyframes flicker {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.2); opacity: 0.8; }
+    }
+    .letter-box {
+      background: rgba(255,255,255,0.95);
+      color: #2b2d42;
+      border-radius: 16px;
+      padding: 20px;
       text-align: left;
       font-size: 14px;
-      line-height: 1.6;
-      color: #444;
-      background: #fff8fa;
-      padding: 18px;
-      border-radius: 12px;
-      border-left: 4px solid #e91e63;
-      animation: fadeIn 0.8s ease;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .music-bar {
-      margin-top: 15px;
-      font-size: 13px;
-      color: #888;
+      line-height: 1.7;
+      border-left: 5px solid #f72585;
+      margin-bottom: 15px;
     }
   </style>
 </head>
 <body>
 
-  <div class="card">
-    <!-- 1.  Afya -->
-    <h1>Happy Birthday Dear! ❤️</h1>
-    <p class="tagline">To the most special person in my life ✨</p>
+  <!-- Audio Player (Romantic Background Track) -->
+  <audio id="bgSong" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-acoustic-guitar-112191.mp3" type="audio/mp3">
+  </audio>
 
-    <!-- 2.  ( https://ibb.co/SZBWvkV
-https://ibb.co/DfY00TnY
-https://ibb.co/RpnJHHFw) -->
-        <!-- 3 Photos Slider -->
-    <div style="display: flex; gap: 12px; overflow-x: auto; padding: 10px 0; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;">
-      <img src="IMG-20260712-WA0288.jpg" style="min-width: 85%; height: 320px; object-fit: cover; border-radius: 15px; scroll-snap-align: center; border: 3px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.15);" alt="Memory 1">
-      <img src="file_0000000076008211a431bfee3b435bb6.png" style="min-width: 85%; height: 320px; object-fit: cover; border-radius: 15px; scroll-snap-align: center; border: 3px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.15);" alt="Memory 2">
-      <img src="IMG-20260926-WA0380.jpg" style="min-width: 85%; height: 320px; object-fit: cover; border-radius: 15px; scroll-snap-align: center; border: 3px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.15);" alt="Memory 3">
-    </div>
-    <p style="font-size: 11px; color: #888; margin-bottom: 12px;">👉 Swipe to see more memories</p>
-
-    <div>
-      <button class="btn" onclick="blastConfetti()">Celebrate 🎉</button>
-      <button class="btn" onclick="toggleLetter()">Open Note 💌</button>
+  <div class="container">
+    
+    <!-- Screen 1: Welcome -->
+    <div class="page active" id="p1">
+      <div style="font-size: 60px; margin-bottom: 10px;">🎁</div>
+      <h1>Hey Gorgeous! ❤️</h1>
+      <p>I made a small special surprise just for you. Ready to open it?</p>
+      <button class="btn" onclick="goToPage(2)">Open Surprise ✨</button>
     </div>
 
-    <!-- 3. നിങ്ങളുടെ പേഴ്സണൽ മെസ്സേജ് ഇവിടെ മാറ്റുക -->
-    <div class="letter" id="secretLetter">
-      <p><b>Dear,</b></p><br>
-      <p>എന്റെ ജീവിതത്തിലേക്ക് വന്നതിനും ഒപ്പമുള്ള ഓരോ ദിവസവും ഇത്ര മനോഹരമാക്കിയതിനും ഒരുപാട് നന്ദി. ഈ പിറന്നാൾ ദിനത്തിൽ നീ ആഗ്രഹിക്കുന്ന എല്ലാ സന്തോഷവും വിജയങ്ങളും നിനക്ക് ഉണ്ടാവട്ടെ എന്ന് മനസ്സ് നിറഞ്ഞ് ആഗ്രഹിക്കുന്നു.</p><br>
-      <p>Always here for you, no matter what. Have a wonderful birthday! 💫</p>
+    <!-- Screen 2: Photo Memories -->
+    <div class="page" id="p2">
+      <h1>Our Moments 📸</h1>
+      <p>Every single moment with you is precious...</p>
+      
+      <div class="polaroid-slider">
+        <div class="polaroid">
+          <img src="IMG-20260712-WA0288.jpg" alt="Photo 1">
+          <span>The cutest smile ✨</span>
+        </div>
+        <div class="polaroid">
+          <img src="file_0000000076008211a431bfee3b435bb6.png" alt="Photo 2">
+          <span>My favorite memory ❤️</span>
+        </div>
+        <div class="polaroid">
+          <img src="IMG-20260926-WA0380.jpg" alt="Photo 3">
+          <span>Forever with you 💫</span>
+        </div>
+      </div>
+      <p style="font-size: 11px; color: #ccc;">👉 Swipe photos to view all</p>
+      <button class="btn" onclick="goToPage(3)">Next: Make a Wish 🎂</button>
     </div>
 
-    <div class="music-bar">
-      <!-- ബാക്ക്ഗ്രൗണ്ട് ഓഡിയോ (വേണമെങ്കിൽ ലിങ്ക് മാറ്റാം) -->
-      <audio id="bgSong" loop>
-        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-acoustic-guitar-112191.mp3" type="audio/mp3">
-      </audio>
-      <button class="btn" style="background:#555; font-size:12px; padding:6px 14px; margin-top:12px;" onclick="toggleAudio()">Play Song 🎵</button>
+    <!-- Screen 3: Interactive Cake & Candle -->
+    <div class="page" id="p3">
+      <h1>Make a Wish! 🕯️</h1>
+      <p id="candleInstruction">Tap on the candle flame to blow it out!</p>
+      
+      <div class="cake-box" onclick="blowCandle()">
+        <span class="flame" id="flame">🔥</span><br>
+        🎂
+      </div>
+      
+      <button class="btn" id="letterBtn" style="display:none;" onclick="goToPage(4)">Read My Letter 💌</button>
     </div>
+
+    <!-- Screen 4: Romantic Letter -->
+    <div class="page" id="p4">
+      <h1>Happy Birthday! 💖</h1>
+      <div class="letter-box">
+        <p><b>Dear Birthday Girl,</b></p><br>
+        <p>Ente life-lekk vanna shesham ella divasavum valare special aakkiyathinu orupaad thanks. Nee aagrahikkunna ella nalla karyangalum ithinakkam nadakkate ennum, eppozhum santhoshamathram undavatte ennum aashamsikkunnu.</p><br>
+        <p>I will always be there for you, through everything. Enjoy your special day to the fullest! 💕</p>
+      </div>
+      <button class="btn" onclick="blastMoreConfetti()">Celebrate More 🎉</button>
+    </div>
+
   </div>
 
   <script>
-    // Confetti burst on load
-    window.onload = function() {
-      blastConfetti();
-    };
-
-    function blastConfetti() {
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 }
-      });
+    function goToPage(pageNumber) {
+      document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
+      document.getElementById('p' + pageNumber).classList.add('active');
+      
+      // Auto-start music
+      var song = document.getElementById('bgSong');
+      if (song.paused) {
+        song.play().catch(e => console.log('Audio autoplay blocked'));
+      }
+      
+      confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 } });
     }
 
-    function toggleLetter() {
-      var letter = document.getElementById("secretLetter");
-      if (letter.style.display === "block") {
-        letter.style.display = "none";
-      } else {
-        letter.style.display = "block";
-        blastConfetti();
+    function blowCandle() {
+      var flame = document.getElementById('flame');
+      if (flame.style.display !== 'none') {
+        flame.style.display = 'none';
+        document.getElementById('candleInstruction').innerHTML = "<b>Yay! May all your wishes come true! 🎉</b>";
+        document.getElementById('letterBtn').style.display = 'inline-block';
+        
+        // Massive confetti explosion
+        confetti({ particleCount: 150, spread: 90, origin: { y: 0.5 } });
       }
     }
 
-    function toggleAudio() {
-      var audio = document.getElementById("bgSong");
-      if (audio.paused) {
-        audio.play();
-      } else {
-        audio.pause();
-      }
+    function blastMoreConfetti() {
+      confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
     }
   </script>
 </body>

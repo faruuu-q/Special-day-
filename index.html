@@ -3,207 +3,300 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday My Love ❤️</title>
+  <title>Happy 6 Months Together ❤️</title>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Poppins', -apple-system, sans-serif;
-      background: linear-gradient(135deg, #1a0826 0%, #3a0ca3 50%, #7209b7 100%);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #120320 0%, #2b0938 50%, #5c1349 100%);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       color: #fff;
-      text-align: center;
-      padding: 15px;
+      padding: 16px;
       overflow-x: hidden;
     }
-    .container {
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 24px;
-      padding: 25px 20px;
-      max-width: 400px;
+    .wrapper {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 28px;
       width: 100%;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      max-width: 390px;
+      padding: 26px 20px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+      text-align: center;
     }
-    .page { display: none; animation: fadeIn 0.6s ease; }
-    .page.active { display: block; }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(12px); }
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      background: rgba(255, 255, 255, 0.14);
+      border-radius: 20px;
+      color: #ff9ebb;
+      margin-bottom: 12px;
+    }
+    .slide { display: none; animation: slideFade 0.5s ease-out; }
+    .slide.active { display: block; }
+    @keyframes slideFade {
+      from { opacity: 0; transform: translateY(14px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    h1 { font-size: 26px; color: #ff70a6; margin-bottom: 10px; }
-    p { font-size: 14px; line-height: 1.6; color: #f1f1f1; margin-bottom: 20px; }
+    h2 { font-size: 24px; color: #ff70a6; margin-bottom: 8px; font-weight: 700; }
+    p { font-size: 13.5px; line-height: 1.6; color: #e6e6e6; margin-bottom: 18px; }
     .btn {
-      background: linear-gradient(45deg, #f72585, #b5179e);
-      color: white;
+      background: linear-gradient(45deg, #ff4081, #d81b60);
+      color: #fff;
       border: none;
       padding: 12px 28px;
       border-radius: 30px;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 600;
       cursor: pointer;
-      box-shadow: 0 5px 15px rgba(247, 37, 133, 0.4);
-      margin: 10px 5px;
+      box-shadow: 0 6px 18px rgba(216, 27, 96, 0.35);
+      margin-top: 10px;
       transition: transform 0.2s;
     }
     .btn:active { transform: scale(0.96); }
-    
-    /* Polaroid Card Slider */
-    .polaroid-slider {
+
+    /* Counter Grid */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .stat-box {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 14px 10px;
+      border-radius: 14px;
+    }
+    .stat-box h3 { font-size: 20px; color: #ff70a6; margin-bottom: 2px; }
+    .stat-box span { font-size: 11.5px; color: #ccc; }
+
+    /* Multi Photo Scroll Deck */
+    .polaroid-deck {
       display: flex;
-      gap: 15px;
-      overflow-x: auto;
-      padding: 10px 5px;
-      scroll-snap-type: x mandatory;
+      flex-direction: column;
+      gap: 16px;
+      max-height: 420px;
+      overflow-y: auto;
+      padding: 6px;
       margin-bottom: 15px;
+      border-radius: 14px;
     }
-    .polaroid {
-      min-width: 85%;
-      background: #fff;
-      padding: 10px 10px 20px 10px;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      scroll-snap-align: center;
-      color: #333;
+    .polaroid-card {
+      background: #ffffff;
+      padding: 10px 10px 16px 10px;
+      border-radius: 14px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.35);
+      color: #222;
+      text-align: center;
     }
-    .polaroid img {
+    .polaroid-card img {
       width: 100%;
-      height: 280px;
+      height: 260px;
       object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 10px;
+      border-radius: 10px;
+      margin-bottom: 8px;
     }
-    .polaroid span {
-      font-size: 13px;
-      font-weight: bold;
+    .polaroid-card span {
+      font-size: 12.5px;
+      font-weight: 600;
       color: #444;
-      font-family: cursive, sans-serif;
     }
-    
-    /* Candle Blow interactive */
-    .cake-box { font-size: 70px; margin: 15px 0; cursor: pointer; position: relative; }
-    .flame {
-      display: inline-block;
-      font-size: 32px;
-      animation: flicker 1s infinite alternate;
+
+    /* Heart Tap */
+    .heart-tap {
+      font-size: 70px;
+      margin: 15px 0;
       cursor: pointer;
+      display: inline-block;
+      animation: heartbeat 1.2s infinite;
     }
-    @keyframes flicker {
-      0% { transform: scale(1); opacity: 1; }
-      100% { transform: scale(1.2); opacity: 0.8; }
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      14% { transform: scale(1.15); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.15); }
+      70% { transform: scale(1); }
     }
-    .letter-box {
-      background: rgba(255,255,255,0.95);
-      color: #2b2d42;
-      border-radius: 16px;
+
+    /* Letter */
+    .letter {
+      background: rgba(255, 255, 255, 0.96);
+      color: #222;
       padding: 20px;
+      border-radius: 16px;
       text-align: left;
-      font-size: 14px;
+      font-size: 13.5px;
       line-height: 1.7;
-      border-left: 5px solid #f72585;
+      border-left: 5px solid #ff4081;
       margin-bottom: 15px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Audio Player (Romantic Background Track) -->
   <audio id="bgSong" loop>
     <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-acoustic-guitar-112191.mp3" type="audio/mp3">
   </audio>
 
-  <div class="container">
-    
-    <!-- Screen 1: Welcome -->
-    <div class="page active" id="p1">
-      <div style="font-size: 60px; margin-bottom: 10px;">🎁</div>
-      <h1>Hey Gorgeous! ❤️</h1>
-      <p>I made a small special surprise just for you. Ready to open it?</p>
-      <button class="btn" onclick="goToPage(2)">Open Surprise ✨</button>
+  <div class="wrapper">
+
+    <!-- SLIDE 1: Welcome -->
+    <div class="slide active" id="s1">
+      <span class="badge">6 Months Milestone 💍</span>
+      <div style="font-size: 55px; margin: 15px 0;">✨🥂✨</div>
+      <h2>Happy 6 Months!</h2>
+      <p>Half a year of unconditional love, fun moments, and pure happiness. Ready to see our journey?</p>
+      <button class="btn" onclick="nextSlide(2)">Open Our Story ❤️</button>
     </div>
 
-    <!-- Screen 2: Photo Memories -->
-    <div class="page" id="p2">
-      <h1>Our Moments 📸</h1>
-      <p>Every single moment with you is precious...</p>
-      
-      <div class="polaroid-slider">
-        <div class="polaroid">
-          <img src="IMG-20260712-WA0288.jpg" alt="Photo 1">
-          <span>The cutest smile ✨</span>
+    <!-- SLIDE 2: Stats of 6 Months -->
+    <div class="slide" id="s2">
+      <span class="badge">6 Months Completed</span>
+      <h2>Our Days In Numbers</h2>
+      <p>നമ്മൾ ഒന്നിച്ചുള്ള ഈ 6 മാസത്തിന്റെ ചെറിയൊരു കണക്ക് ✨</p>
+
+      <div class="stat-grid">
+        <div class="stat-box">
+          <h3>180+</h3>
+          <span>Days of Love</span>
         </div>
-        <div class="polaroid">
-          <img src="file_0000000076008211a431bfee3b435bb6.png" alt="Photo 2">
-          <span>My favorite memory ❤️</span>
+        <div class="stat-box">
+          <h3>4,300+</h3>
+          <span>Hours of Smiles</span>
         </div>
-        <div class="polaroid">
-          <img src="IMG-20260926-WA0380.jpg" alt="Photo 3">
-          <span>Forever with you 💫</span>
+        <div class="stat-box">
+          <h3>Infinite</h3>
+          <span>Beautiful Calls</span>
+        </div>
+        <div class="stat-box">
+          <h3>1 & Only</h3>
+          <span>My Favorite Human</span>
         </div>
       </div>
-      <p style="font-size: 11px; color: #ccc;">👉 Swipe photos to view all</p>
-      <button class="btn" onclick="goToPage(3)">Next: Make a Wish 🎂</button>
+
+      <button class="btn" onclick="nextSlide(3)">Our Memories 📸</button>
     </div>
 
-    <!-- Screen 3: Interactive Cake & Candle -->
-    <div class="page" id="p3">
-      <h1>Make a Wish! 🕯️</h1>
-      <p id="candleInstruction">Tap on the candle flame to blow it out!</p>
-      
-      <div class="cake-box" onclick="blowCandle()">
-        <span class="flame" id="flame">🔥</span><br>
-        🎂
+    <!-- SLIDE 3: Photo Memories (All Photos Added) -->
+    <div class="slide" id="s3">
+      <span class="badge">Moments Captured</span>
+      <h2>6 Months of Us</h2>
+      <p>Scroll down to relive our favorite clicks 💫</p>
+
+      <div class="polaroid-deck">
+        <div class="polaroid-card">
+          <img src="1000305147.jpg" alt="Memory">
+          <span>Always making each other smile like this 🥰</span>
+        </div>
+        <div class="polaroid-card">
+          <img src="7f68d12b-75a1-47f0-9306-3876dd1dad80-1_all_4721.jpg" alt="Memory">
+          <span>Looking our absolute best together ✨</span>
+        </div>
+        <div class="polaroid-card">
+          <img src="1000305151.jpg" alt="Memory">
+          <span>Safe in your arms forever ❤️</span>
+        </div>
+        <div class="polaroid-card">
+          <img src="1000305150.jpg" alt="Memory">
+          <span>That smile which stole my heart ✨</span>
+        </div>
+        <div class="polaroid-card">
+          <img src="1000305146.jpg" alt="Memory">
+          <span>My most comfortable place 💫</span>
+        </div>
+        <div class="polaroid-card">
+          <img src="1000305149.jpg" alt="Memory">
+          <span>Every date with you feels magical ☕</span>
+        </div>
+        <div class="polaroid-card">
+          <img src="1000305145.jpg" alt="Memory">
+          <span>Cute and silly with you always 💕</span>
+        </div>
+        <div class="polaroid-card">
+          <img src="7f68d12b-75a1-47f0-9306-3876dd1dad80-1_all_4716.jpg" alt="Memory">
+          <span>Just the two of us 🤍</span>
+        </div>
+        <div class="polaroid-card">
+          <img src="7f68d12b-75a1-47f0-9306-3876dd1dad80-1_all_4715.png" alt="Memory">
+          <span>Mirror selfie perfection ✨</span>
+        </div>
+        <div class="polaroid-card">
+          <img src="7f68d12b-75a1-47f0-9306-3876dd1dad80-1_all_4717.jpg" alt="Memory">
+          <span>Always shining bright together 💖</span>
+        </div>
+        <div class="polaroid-card">
+          <img src="1000305148.png" alt="Memory">
+          <span>Timeless love story 📸</span>
+        </div>
       </div>
-      
-      <button class="btn" id="letterBtn" style="display:none;" onclick="goToPage(4)">Read My Letter 💌</button>
+
+      <button class="btn" onclick="nextSlide(4)">Next Surprise 💌</button>
     </div>
 
-    <!-- Screen 4: Romantic Letter -->
-    <div class="page" id="p4">
-      <h1>Happy Birthday! 💖</h1>
-      <div class="letter-box">
-        <p><b>Dear Birthday Girl,</b></p><br>
-        <p>Ente life-lekk vanna shesham ella divasavum valare special aakkiyathinu orupaad thanks. Nee aagrahikkunna ella nalla karyangalum ithinakkam nadakkate ennum, eppozhum santhoshamathram undavatte ennum aashamsikkunnu.</p><br>
-        <p>I will always be there for you, through everything. Enjoy your special day to the fullest! 💕</p>
+    <!-- SLIDE 4: Interactive Heart Tap -->
+    <div class="slide" id="s4">
+      <span class="badge">Unlock Secret Note</span>
+      <h2>Tap The Heart 💕</h2>
+      <p id="tapText">താഴെ കാണുന്ന heart-ൽ തൊട്ട് സർപ്രൈസ് ലെറ്റർ അൺലോക്ക് ചെയ്യൂ...</p>
+
+      <div class="heart-tap" id="heartIcon" onclick="unlockLetter()">
+        💖
       </div>
-      <button class="btn" onclick="blastMoreConfetti()">Celebrate More 🎉</button>
+
+      <button class="btn" id="letterBtn" style="display:none;" onclick="nextSlide(5)">Read My Letter 📜</button>
+    </div>
+
+    <!-- SLIDE 5: Anniversary Letter -->
+    <div class="slide" id="s5">
+      <span class="badge">Forever Yours</span>
+      <h2>Happy 6 Months, Love! 🥂</h2>
+      <div class="letter">
+        <p><b>Dear,</b></p><br>
+        <p>നമ്മൾ ഒന്നിച്ചിട്ട് 6 months കഴിഞ്ഞു എന്ന് വിശ്വസിക്കാൻ പോലും പറ്റുന്നില്ല! എന്റെ ലൈഫിലേക്ക് വന്നതിനും ഓരോ ദിവസവും ഇത്രയും സ്പെഷ്യൽ ആക്കിയതിനും ഒരുപാട് താങ്ക്സ്.</p><br>
+        <p>പിണക്കങ്ങളും ഒരുപാട് ചിരികളും സ്നേഹവുമായി ഈ 6 മാസം വളരെ വേഗത്തിൽ കടന്നുപോയി. ഇനി വരാനുള്ള എല്ലാ നാളുകളിലും ഇതുപോലെ ചേർത്തുപിടിച്ച് കൂടെയുണ്ടാവണം എന്നാണ് ആഗ്രഹം.</p><br>
+        <p>Happy 6 Months Anniversary! I love you so much ❤️</p>
+      </div>
+      <button class="btn" onclick="blastConfetti()">Celebrate 🎉</button>
     </div>
 
   </div>
 
   <script>
-    function goToPage(pageNumber) {
-      document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
-      document.getElementById('p' + pageNumber).classList.add('active');
-      
-      // Auto-start music
-      var song = document.getElementById('bgSong');
-      if (song.paused) {
-        song.play().catch(e => console.log('Audio autoplay blocked'));
+    function nextSlide(num) {
+      document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+      document.getElementById('s' + num).classList.add('active');
+
+      var audio = document.getElementById('bgSong');
+      if (audio.paused) {
+        audio.play().catch(e => console.log('Audio autoplay handled'));
       }
-      
-      confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 } });
+
+      confetti({ particleCount: 35, spread: 55, origin: { y: 0.6 } });
     }
 
-    function blowCandle() {
-      var flame = document.getElementById('flame');
-      if (flame.style.display !== 'none') {
-        flame.style.display = 'none';
-        document.getElementById('candleInstruction').innerHTML = "<b>Yay! May all your wishes come true! 🎉</b>";
-        document.getElementById('letterBtn').style.display = 'inline-block';
-        
-        // Massive confetti explosion
-        confetti({ particleCount: 150, spread: 90, origin: { y: 0.5 } });
+    function unlockLetter() {
+      var btn = document.getElementById('letterBtn');
+      if (btn.style.display === 'none') {
+        document.getElementById('tapText').innerHTML = "<b style='color:#ff70a6;'>Unlocked with love! 💕</b>";
+        btn.style.display = 'inline-block';
+        confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
       }
     }
 
-    function blastMoreConfetti() {
-      confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+    function blastConfetti() {
+      confetti({ particleCount: 130, spread: 90, origin: { y: 0.5 } });
     }
   </script>
 </body>
 </html>
+

@@ -78,4 +78,239 @@
       padding: 14px 10px;
       border-radius: 14px;
     }
-    .stat-box h3 { font-size: 20px
+    .stat-box h3 { font-size: 20px; color: #ff70a6; margin-bottom: 2px; }
+    .stat-box span { font-size: 11.5px; color: #ccc; }
+
+    /* Horizontal Swipe Model for Photos */
+    .swipe-container {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding: 10px 4px 18px 4px;
+      margin-bottom: 10px;
+      scrollbar-width: none;
+    }
+    .swipe-container::-webkit-scrollbar {
+      display: none;
+    }
+    .swipe-card {
+      flex: 0 0 86%;
+      scroll-snap-align: center;
+      background: #ffffff;
+      padding: 10px 10px 16px 10px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+      color: #222;
+      text-align: center;
+    }
+    .swipe-card img {
+      width: 100%;
+      height: 270px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+    .swipe-card span {
+      font-size: 13px;
+      font-weight: 600;
+      color: #333;
+      display: block;
+    }
+
+    /* Heart Tap */
+    .heart-tap {
+      font-size: 70px;
+      margin: 15px 0;
+      cursor: pointer;
+      display: inline-block;
+      animation: heartbeat 1.2s infinite;
+    }
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      14% { transform: scale(1.15); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.15); }
+      70% { transform: scale(1); }
+    }
+
+    /* Clear and Sharp Letter Box */
+    .letter {
+      background: #ffffff !important;
+      padding: 22px 18px;
+      border-radius: 18px;
+      text-align: left;
+      font-size: 14px;
+      line-height: 1.7;
+      border-left: 5px solid #ff4081;
+      margin-bottom: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    }
+    .letter p, .letter b, .letter span {
+      color: #222222 !important; /* Fixed: Perfectly readable dark text */
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Audio Player -->
+  <audio id="bgSong" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-acoustic-guitar-112191.mp3" type="audio/mp3">
+  </audio>
+
+  <div class="wrapper">
+
+    <!-- SLIDE 1: Welcome -->
+    <div class="slide active" id="s1">
+      <span class="badge">6 Months Milestone 💍</span>
+      <div style="font-size: 55px; margin: 15px 0;">✨🥂✨</div>
+      <h2>Happy 6 Months!</h2>
+      <p>Half a year of unconditional love, fun moments, and pure happiness. Ready to see our journey?</p>
+      <button class="btn" onclick="nextSlide(2)">Open Our Story ❤️</button>
+    </div>
+
+    <!-- SLIDE 2: Stats of 6 Months -->
+    <div class="slide" id="s2">
+      <span class="badge">6 Months Completed</span>
+      <h2>Our Days In Numbers</h2>
+      <p>നമ്മൾ ഒന്നിച്ചുള്ള ഈ 6 മാസത്തിന്റെ ചെറിയൊരു കണക്ക് ✨</p>
+
+      <div class="stat-grid">
+        <div class="stat-box">
+          <h3>180+</h3>
+          <span>Days of Love</span>
+        </div>
+        <div class="stat-box">
+          <h3>4,300+</h3>
+          <span>Hours of Smiles</span>
+        </div>
+        <div class="stat-box">
+          <h3>Infinite</h3>
+          <span>Beautiful Calls</span>
+        </div>
+        <div class="stat-box">
+          <h3>1 & Only</h3>
+          <span>My Favorite Human</span>
+        </div>
+      </div>
+
+      <button class="btn" onclick="nextSlide(3)">Our Memories 📸</button>
+    </div>
+
+    <!-- SLIDE 3: Photos (Horizontal Swipe Model) -->
+    <div class="slide" id="s3">
+      <span class="badge">Moments Captured</span>
+      <h2>6 Months of Us</h2>
+      <p style="margin-bottom: 6px;">ഇടത്തോട്ട് സ്വൈപ്പ് ചെയ്തു നോക്കൂ 👉</p>
+
+      <div class="swipe-container">
+        <div class="swipe-card">
+          <img src="1000305147.jpg" alt="Memory">
+          <span>Always making each other smile 🥰</span>
+        </div>
+        <div class="swipe-card">
+          <img src="7f68d12b-75a1-47f0-9306-3876dd1dad80-1_all_4721.jpg" alt="Memory">
+          <span>Looking our absolute best together ✨</span>
+        </div>
+        <div class="swipe-card">
+          <img src="1000305151.jpg" alt="Memory">
+          <span>Safe in your arms forever ❤️</span>
+        </div>
+        <div class="swipe-card">
+          <img src="1000305150.jpg" alt="Memory">
+          <span>That smile which stole my heart ✨</span>
+        </div>
+        <div class="swipe-card">
+          <img src="1000305146.jpg" alt="Memory">
+          <span>My most comfortable place 💫</span>
+        </div>
+        <div class="swipe-card">
+          <img src="1000305149.jpg" alt="Memory">
+          <span>Every date with you feels magical ☕</span>
+        </div>
+        <div class="swipe-card">
+          <img src="1000305145.jpg" alt="Memory">
+          <span>Cute and silly with you always 💕</span>
+        </div>
+        <div class="swipe-card">
+          <img src="7f68d12b-75a1-47f0-9306-3876dd1dad80-1_all_4716.jpg" alt="Memory">
+          <span>Just the two of us 🤍</span>
+        </div>
+        <div class="swipe-card">
+          <img src="7f68d12b-75a1-47f0-9306-3876dd1dad80-1_all_4715.png" alt="Memory">
+          <span>Mirror selfie perfection ✨</span>
+        </div>
+        <div class="swipe-card">
+          <img src="7f68d12b-75a1-47f0-9306-3876dd1dad80-1_all_4717.jpg" alt="Memory">
+          <span>Always shining bright together 💖</span>
+        </div>
+        <div class="swipe-card">
+          <img src="1000305148.png" alt="Memory">
+          <span>Timeless love story 📸</span>
+        </div>
+      </div>
+
+      <button class="btn" onclick="nextSlide(4)">Next Surprise 💌</button>
+    </div>
+
+    <!-- SLIDE 4: Interactive Heart Tap -->
+    <div class="slide" id="s4">
+      <span class="badge">Unlock Secret Note</span>
+      <h2>Tap The Heart 💕</h2>
+      <p id="tapText">താഴെ കാണുന്ന heart-ൽ തൊട്ട് സർപ്രൈസ് ലെറ്റർ അൺലോക്ക് ചെയ്യൂ...</p>
+
+      <div class="heart-tap" id="heartIcon" onclick="unlockLetter()">
+        💖
+      </div>
+
+      <button class="btn" id="letterBtn" style="display:none;" onclick="nextSlide(5)">Read My Letter 📜</button>
+    </div>
+
+    <!-- SLIDE 5: Clear and Readable Anniversary Letter -->
+    <div class="slide" id="s5">
+      <span class="badge">Forever Yours</span>
+      <h2>Happy 6 Months, Love! 🥂</h2>
+
+      <!-- LETTER CONTENT: ഇതിലെ വരികൾ മാറ്റണമെങ്കിൽ താഴെയുള്ള വാചകങ്ങൾ മാറ്റാം -->
+      <div class="letter">
+        <p><b>Dear,</b></p>
+        <p>നമ്മൾ ഒന്നിച്ചിട്ട് 6 months കഴിഞ്ഞു എന്ന് വിശ്വസിക്കാൻ പോലും പറ്റുന്നില്ല! എന്റെ ലൈഫിലേക്ക് വന്നതിനും ഓരോ ദിവസവും ഇത്രയും സ്പെഷ്യൽ ആക്കിയതിനും ഒരുപാട് താങ്ക്സ്.</p>
+        <p>പിണക്കങ്ങളും ഒരുപാട് ചിരികളും സ്നേഹവുമായി ഈ 6 മാസം വളരെ വേഗത്തിൽ കടന്നുപോയി. ഇനി വരാനുള്ള എല്ലാ നാളുകളിലും ഇതുപോലെ ചേർത്തുപിടിച്ച് കൂടെയുണ്ടാവണം എന്നാണ് ആഗ്രഹം.</p>
+        <p>Happy 6 Months Anniversary! I love you so much ❤️</p>
+      </div>
+
+      <button class="btn" onclick="blastConfetti()">Celebrate 🎉</button>
+    </div>
+
+  </div>
+
+  <script>
+    function nextSlide(num) {
+      document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+      document.getElementById('s' + num).classList.add('active');
+
+      var audio = document.getElementById('bgSong');
+      if (audio.paused) {
+        audio.play().catch(e => console.log('Autoplay handled'));
+      }
+
+      confetti({ particleCount: 35, spread: 55, origin: { y: 0.6 } });
+    }
+
+    function unlockLetter() {
+      var btn = document.getElementById('letterBtn');
+      if (btn.style.display === 'none') {
+        document.getElementById('tapText').innerHTML = "<b style='color:#ff70a6;'>Unlocked with love! 💕</b>";
+        btn.style.display = 'inline-block';
+        confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+      }
+    }
+
+    function blastConfetti() {
+      confetti({ particleCount: 130, spread: 90, origin: { y: 0.5 } });
+    }
+  </script>
+</body>
+</html>
